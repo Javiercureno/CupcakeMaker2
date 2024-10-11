@@ -10,15 +10,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ebc.cupcakemaker.R
+import com.ebc.cupcakemaker.enumerators.ViewIDs
+import com.ebc.cupcakemaker.enumerators.ViewModelIDs
 import com.ebc.cupcakemaker.staticdata.DataSource
 import com.ebc.cupcakemaker.view.components.CustomSpacer
 import com.ebc.cupcakemaker.view.components.TitleMedium
@@ -56,22 +60,35 @@ fun StartOrderScreen(navController: NavController,
             CustomSpacer(height = 8.dp)
             TitleMedium(stringResource(R.string.cupcake_price, cupcakeMakerViewModel.state.price))
             CustomSpacer(height = 8.dp)
+            Column (
+                modifier =  Modifier
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16. dp)
+            ){
 
-        }
-                Column (
-                    modifier =  Modifier
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(16. dp)
-                ){
-                    quantityOptions.forEach{
-                        Button(
-
-                        ) {
-                            Text(text = "Click")
-                        }
-
+                quantityOptions.forEach { option ->
+                    Button(
+                        onClick = {
+                            cupcakeMakerViewModel.onValue(option.second.toString(), ViewModelIDs.Quantity.id)
+                            navController.navigate(ViewIDs.Flavors.id)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Red,
+                            contentColor = Color.Blue
+                        )
+                    ) {
+                        Text(
+                            text = option.second.toString() + " " + stringResource(option.first)
+                        )
                     }
                 }
             }
+
+        }
+
+                }
+
         }

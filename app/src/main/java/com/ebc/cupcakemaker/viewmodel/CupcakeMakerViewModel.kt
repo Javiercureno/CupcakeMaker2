@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.ebc.cupcakemaker.enumerators.ViewModelIDs
 import com.ebc.cupcakemaker.model.CupcakeOrderState
 
 
@@ -16,7 +17,7 @@ class CupcakeMakerViewModel: ViewModel () {
     //TODO: Que va a pasar cuando view solicite un cambio
     fun onValue(value:String, textId: String) {
         when (textId) {
-            "flavor" -> state = state.copy(flavor = value);
+            ViewModelIDs.Flavor.id-> state = state.copy(flavor = value);
             "quantity" -> {
                 state = state.copy(quantity = value.toInt())
                 calculateTotalAmount();

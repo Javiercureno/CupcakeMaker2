@@ -4,7 +4,7 @@ import androidx.compose.ui.res.stringResource
 import com.ebc.cupcakemaker.R
 
 object DataSource {
-    val flavors = listOf(
+    val flavorsKeys = listOf(
         R.string.vanilla,
         R.string.chocolate,
         R.string.red_velvet,

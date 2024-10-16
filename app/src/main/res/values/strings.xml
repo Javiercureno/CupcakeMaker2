@@ -9,6 +9,13 @@
     <string name="cupcake_price">Precio por cupcake $ %s</string>
 
 
+    <!-- SelectFlavorScreen-->
+    <string name="extra_instructions">Otras instrucciones</string>
+    <string name="subtotal">Subtotal $ %s </string>
+    <string name="cancel">"cancelar" </string>
+    <string name="next">"siguiente" </string>
+
+
     <!-- DataSource-->
 
     <string name="vanilla">Vainilla</string>

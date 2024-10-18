@@ -17,6 +17,9 @@
 <!-- SelectDateScreen -->
     <string name="pickup_instructions">Instrucciones de Recoleccion</string>
 
+    <!-- OrderSummaryScreen-->
+    <string name="quantity">Cantidad</string>
+
     <!-- DataSource-->
 
     <string name="vanilla">Vainilla</string>

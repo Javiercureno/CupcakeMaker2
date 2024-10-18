@@ -10,15 +10,19 @@
 
 
     <!-- SelectFlavorScreen-->
-    <string name="extra_instructions">Otras instrucciones</string>
+    <string name="extra_instructions">Otras instrucciones:</string>
     <string name="subtotal">Subtotal $ %s </string>
     <string name="cancel">"cancelar" </string>
     <string name="next">"siguiente" </string>
 <!-- SelectDateScreen -->
-    <string name="pickup_instructions">Instrucciones de Recoleccion</string>
+    <string name="pickup_instructions">Instrucciones de Recoleccion:</string>
 
     <!-- OrderSummaryScreen-->
     <string name="quantity">Cantidad</string>
+    <string name="flavor">Sabor</string>
+    <string name="pickup_date">Fecha de recollección</string>
+    <string name="share">enviar a otra app</string>
+    <string name="send">Enviar Orden</string>
 
     <!-- DataSource-->
 

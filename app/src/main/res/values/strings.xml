@@ -14,7 +14,8 @@
     <string name="subtotal">Subtotal $ %s </string>
     <string name="cancel">"cancelar" </string>
     <string name="next">"siguiente" </string>
-
+<!-- SelectDateScreen -->
+    <string name="pickup_instructions">Instrucciones de Recoleccion</string>
 
     <!-- DataSource-->
 

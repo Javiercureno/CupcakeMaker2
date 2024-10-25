@@ -10,11 +10,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ebc.cupcakemaker.enumerators.ViewIDs
+import com.ebc.cupcakemaker.view.components.cupcakewizard.FinishScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.OrderSummaryScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.SelectDateScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.SelectFlavorScreen
@@ -25,9 +28,9 @@ import com.ebc.cupcakemaker.viewmodel.CupcakeMakerViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun CupcakeAppBar(){
+fun CupcakeAppBar(currentScreen: ViewIDs){
     CenterAlignedTopAppBar(
-        title = {"Título"},
+        title = { Text(currentScreen.tag) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
@@ -41,9 +44,18 @@ fun CupcakeAppBar(){
 fun NavigationManager(cupcakeMakerViewModel: CupcakeMakerViewModel) {
     val navController = rememberNavController();
 
+    val backStackEntry by navController.currentBackStackEntryAsState()
+
+    val currentScreen = ViewIDs.valueOf(
+        backStackEntry?.destination?.route ?: ViewIDs.Start.id
+    )
+
     Scaffold(
-        topBar = { CupcakeAppBar() },
-        bottomBar = { Text(text = "I'm the botton container") }
+        topBar = {
+            if(currentScreen !in listOf(ViewIDs.Splash,ViewIDs.Home, ViewIDs.FinishOrder)) {
+                CupcakeAppBar(currentScreen)
+            }
+        }
     ) {
         NavHost(
             navController = navController,
@@ -52,9 +64,13 @@ fun NavigationManager(cupcakeMakerViewModel: CupcakeMakerViewModel) {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            composable("Home") {
-                Text(text = "Placeholder Home")
+            composable(ViewIDs.Splash.id) {
+                //SplashScreen(navController)
             }
+            composable(ViewIDs.Home.id) {
+                //MainOnboarding(navController)
+            }
+
             composable(ViewIDs.Start.id) {
                 StartOrderScreen(navController, cupcakeMakerViewModel)
             }
@@ -66,6 +82,10 @@ fun NavigationManager(cupcakeMakerViewModel: CupcakeMakerViewModel) {
             }
             composable(ViewIDs.OrderSummary.id) {
                 OrderSummaryScreen(navController, cupcakeMakerViewModel)
+            }
+            composable (ViewIDs.FinishOrder.id) {
+                FinishScreen(navController, cupcakeMakerViewModel)
+
             }
         }
             }

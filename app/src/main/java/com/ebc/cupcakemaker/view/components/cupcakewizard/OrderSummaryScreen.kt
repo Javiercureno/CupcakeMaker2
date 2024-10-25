@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ebc.cupcakemaker.R
+import com.ebc.cupcakemaker.enumerators.ViewIDs
 import com.ebc.cupcakemaker.viewmodel.CupcakeMakerViewModel
 
 
@@ -48,6 +49,18 @@ fun OrderSummaryScreen(navContoller: NavController,
 
     val context = LocalContext.current
     //val resources = context.resources
+
+    val summary = cupcakeMakerViewModel.state.quantity.toString() +
+            "  " + stringResource(R.string.cupcake_tag) + "\n" +
+            stringResource(R.string.flavor) + " " +cupcakeMakerViewModel.state.flavor + "\n" +
+            stringResource(R.string.pickup_date) + " " + cupcakeMakerViewModel.state.pickupDate + "\n"
+            stringResource(R.string.pickup_instructions) + " " + cupcakeMakerViewModel.state.pickupInstructions + "\n"
+            stringResource(R.string.extra_instructions) + " " + cupcakeMakerViewModel.state.extraInstructions
+
+    val title = stringResource(R.string.new_order)
+
+
+
 
     Column (
         modifier = Modifier.fillMaxSize(),
@@ -114,7 +127,7 @@ fun OrderSummaryScreen(navContoller: NavController,
                             context,
                             "Orden final",
                             "Nueva Orden",
-                            "Resumen")
+                            summary)
 
                     }
                 ) {
@@ -122,7 +135,9 @@ fun OrderSummaryScreen(navContoller: NavController,
                 }
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = {},
+                    onClick = {
+                        navContoller.navigate(ViewIDs.FinishOrder.id)
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF07d800)
                     )

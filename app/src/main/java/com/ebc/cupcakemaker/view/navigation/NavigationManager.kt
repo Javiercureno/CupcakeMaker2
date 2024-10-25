@@ -1,6 +1,9 @@
 package com.ebc.cupcakemaker.view.navigation
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -22,6 +25,7 @@ import com.ebc.cupcakemaker.view.components.cupcakewizard.OrderSummaryScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.SelectDateScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.SelectFlavorScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.StartOrderScreen
+import com.ebc.cupcakemaker.view.components.onboarding.MainOnboarding
 import com.ebc.cupcakemaker.viewmodel.CupcakeMakerViewModel
 
 //TODO: Crear función para el topbar
@@ -55,11 +59,18 @@ fun NavigationManager(cupcakeMakerViewModel: CupcakeMakerViewModel) {
             if(currentScreen !in listOf(ViewIDs.Splash,ViewIDs.Home, ViewIDs.FinishOrder)) {
                 CupcakeAppBar(currentScreen)
             }
+        },
+        bottomBar = {
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center) {
+                Text(text = "Cupcake Maker 1.0")}
+
         }
     ) {
         NavHost(
             navController = navController,
-            startDestination = ViewIDs.Start.id,
+            startDestination = ViewIDs.Home.id,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
@@ -68,7 +79,7 @@ fun NavigationManager(cupcakeMakerViewModel: CupcakeMakerViewModel) {
                 //SplashScreen(navController)
             }
             composable(ViewIDs.Home.id) {
-                //MainOnboarding(navController)
+                MainOnboarding(navController)
             }
 
             composable(ViewIDs.Start.id) {

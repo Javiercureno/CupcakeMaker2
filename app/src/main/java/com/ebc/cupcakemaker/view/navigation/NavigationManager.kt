@@ -1,5 +1,6 @@
 package com.ebc.cupcakemaker.view.navigation
 
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import com.ebc.cupcakemaker.view.components.cupcakewizard.SelectDateScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.SelectFlavorScreen
 import com.ebc.cupcakemaker.view.components.cupcakewizard.StartOrderScreen
 import com.ebc.cupcakemaker.view.components.onboarding.MainOnboarding
+import com.ebc.cupcakemaker.view.components.splash.SplashScreen
 import com.ebc.cupcakemaker.viewmodel.CupcakeMakerViewModel
 
 //TODO: Crear función para el topbar
@@ -70,13 +72,13 @@ fun NavigationManager(cupcakeMakerViewModel: CupcakeMakerViewModel) {
     ) {
         NavHost(
             navController = navController,
-            startDestination = ViewIDs.Home.id,
+            startDestination = ViewIDs.Splash.id,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
         ) {
             composable(ViewIDs.Splash.id) {
-                //SplashScreen(navController)
+                SplashScreen(navController)
             }
             composable(ViewIDs.Home.id) {
                 MainOnboarding(navController)
